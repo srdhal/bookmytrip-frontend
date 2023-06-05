@@ -43,8 +43,9 @@
 .search-item{
     display: flex;
     gap: 20px;
+    cursor: pointer;
 }
-.date-range{
+.dropdown{
     position: absolute;
     top: 40px;
 }

@@ -1,0 +1,10 @@
+.home-content{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.home-title{
+    width: 1000px;
+}
