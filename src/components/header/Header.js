@@ -6,11 +6,13 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
+import { useNavigate } from "react-router-dom";
 
 
 export default function Header({type}) {
     
     const [openDatePanel,setOpenDatePanel] =useState(false)
+    const [destination,setDestination] =useState("")
     const [openPersonPanel,setOpenPersonPanel] =useState(false)
     const [date,setDate] = useState([
         {
@@ -32,6 +34,10 @@ export default function Header({type}) {
           [name]: operation==='+' ? counter[name]+1 : counter[name]-1 < 0 ? 0 : counter[name]-1 
         }
       })
+    }
+    const navigate=useNavigate()
+    const handleSearch=()=>{
+          navigate("/lists",{state: {destination,date,counter}})
     }
 
 
@@ -60,7 +66,7 @@ export default function Header({type}) {
         <div className='search'>
             <div className='search-item'>
             <FontAwesomeIcon icon={faLocationDot} />
-            <input type='text' placeholder='where are you going?'/>            
+            <input type='text' placeholder='where are you going?' onChange={(e)=>{setDestination(e.target.value)}}/>            
             </div>
             <div className='search-item'>
             <FontAwesomeIcon icon={faCalendar} />
@@ -100,7 +106,7 @@ export default function Header({type}) {
              }                  
             </div>
             <div className='search-item'>
-            <button>search</button>                       
+            <button onClick={handleSearch}>search</button>                       
             </div>
         </div>}
       </div>
