@@ -1,7 +1,8 @@
 import React from 'react'
 import './searchResultItem.css'
+import { Link, Navigate } from 'react-router-dom'
 
-export default function SearchResultItem() {
+export default function SearchResultItem({item}) {
   return (
     <div className="search-result-item">
       <img
@@ -10,8 +11,8 @@ export default function SearchResultItem() {
         className="search-result-img"
       />
       <div className="search-result-item-desc">
-        <h1 className="search-result-title">Tower Street Apartments</h1>
-        <span className="search-result-distance">500m from center</span>
+        <h1 className="search-result-title">{item.name}</h1>
+        <span className="search-result-distance">{item.distance} from center</span>
         <span className="search-result-transport">Free airport taxi</span>
         <span className="search-result-subtitle">
           Studio Apartment with Air conditioning
@@ -25,14 +26,16 @@ export default function SearchResultItem() {
         </span>
       </div>
       <div className="search-result-item-details">
-        <div className="search-result-rating">
+        {item.rating?(<div className="search-result-rating">
           <span>Excellent</span>
-          <button>8.9</button>
-        </div>
+          <button>{item.rating}</button>
+        </div>):<></>}
         <div className="search-result-item-detailtexts">
-          <span className="search-result-price">$112</span>
+          <span className="search-result-price">${item.cheapestPrice}</span>
           <span className="search-result-tax">Includes taxes and fees</span>
+          <Link to={`http://localhost:3000/hotel/${item._id}`}>
           <button className="search-result-check">See availability</button>
+          </Link>
         </div>
       </div>
     </div>

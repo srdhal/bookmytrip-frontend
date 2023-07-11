@@ -1,9 +1,14 @@
 import React from 'react'
 import './featured.css'
+import useFetch from '../../hooks/useFetch'
 
 export default function Featured() {
+
+  const {data,loading,err}=useFetch("http://localhost:8000/hotels/get/countByCity?cities=a,b,c")
   return (
     <div className="featured">
+    {loading? ("loading !! please wait"):
+    (<>
       <div className="featured-item">
         <img
           src="https://cf.bstatic.com/xdata/images/city/max500/957801.webp?k=a969e39bcd40cdcc21786ba92826063e3cb09bf307bcfeac2aa392b838e9b7a5&o="
@@ -12,7 +17,7 @@ export default function Featured() {
         />
         <div className="featured-title">
           <h1>Dublin</h1>
-          <h2>123 properties</h2>
+          <h2>{data[0]} properties</h2>
         </div>
       </div>
       
@@ -24,7 +29,7 @@ export default function Featured() {
         />
         <div className="featured-title">
           <h1>Reno</h1>
-          <h2>533 properties</h2>
+          <h2>{data[1]} properties</h2>
         </div>
       </div>
       <div className="featured-item">
@@ -35,9 +40,10 @@ export default function Featured() {
         />
         <div className="featured-title">
           <h1>Austin</h1>
-          <h2>532 properties</h2>
+          <h2>{data[2]} properties</h2>
         </div>
       </div>
+    </>)}
     </div>
   )
 }

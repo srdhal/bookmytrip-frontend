@@ -1,9 +1,15 @@
 import React from 'react'
 import './property.css'
+import useFetch from '../../hooks/useFetch'
 
 export default function Property() {
+
+  const {data,loading,err}=useFetch("http://localhost:8000/hotels/get/countByType")
+  // console.log(data)
   return (
     <div className="property">
+    {loading ? ("loading !! please wait") :
+    (<>
       <div className="property-item">
         <img
           src="https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o="
@@ -12,7 +18,7 @@ export default function Property() {
         />
         <div className="property-title">
           <h1>Hotels</h1>
-          <h2>233 hotels</h2>
+          {data[0]?<h2>{data[0].count} {data[0].type}</h2>:<h2></h2>}
         </div>
       </div>
       <div className="property-item">
@@ -23,7 +29,7 @@ export default function Property() {
         />
         <div className="property-title">
           <h1>Apartments</h1>
-          <h2>2331 hotels</h2>
+          {data[1]?<h2>{data[1].count} {data[1].type}</h2>:<h2></h2>}
         </div>
       </div>
       <div className="property-item">
@@ -34,7 +40,7 @@ export default function Property() {
         />
         <div className="property-title">
           <h1>Resorts</h1>
-          <h2>2331 hotels</h2>
+          {data[2]?<h2>{data[2].count} {data[2].type}</h2>:<h2></h2>}
         </div>
       </div>
       <div className="property-item">
@@ -45,7 +51,7 @@ export default function Property() {
         />
         <div className="property-title">
           <h1>Villas</h1>
-          <h2>2331 hotels</h2>
+          {data[3]?<h2>{data[3].count} {data[3].type}</h2>:<h2></h2>}
         </div>
       </div>
       <div className="property-item">
@@ -56,9 +62,10 @@ export default function Property() {
         />
         <div className="property-title">
           <h1>Cabins</h1>
-          <h2>2331 hotels</h2>
+          {data[4]?<h2>{data[4].count} {data[4].type}</h2>:<h2></h2>}
         </div>
       </div>
+    </>)}
     </div>
   )
 }
