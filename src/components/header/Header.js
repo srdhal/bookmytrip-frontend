@@ -7,6 +7,7 @@ import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
 import { useNavigate } from "react-router-dom";
+import { useSearch } from '../../contexts/SearchProvider';
 
 
 export default function Header({type}) {
@@ -36,10 +37,11 @@ export default function Header({type}) {
       })
     }
     const navigate=useNavigate()
+    const {dispatch}=useSearch()
     const handleSearch=()=>{
+          dispatch({type: "NEW_SEARCH",payload:{destination,date,counter}})
           navigate("/lists",{state: {destination,date,counter}})
     }
-
 
   return (
     <div className='header'>

@@ -5,7 +5,7 @@ import './featuredProperties.css'
 export default function FeaturedProperties() {
 
   const {data,loading,err}=useFetch("http://localhost:8000/hotels?featured=true&limit=4")
-  console.log(loading)
+  // console.log(loading)
   return (
     <>
       {loading?("loading !! please wait"):

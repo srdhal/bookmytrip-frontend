@@ -7,6 +7,7 @@ import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocation } from
 import MailingList from '../../components/mailingList/MailingList'
 import { useLocation, useParams } from 'react-router-dom'
 import useFetch from '../../hooks/useFetch'
+import { useSearch } from '../../contexts/SearchProvider'
 
 
 
@@ -15,7 +16,7 @@ export default function Hotel() {
   const id=useParams()
 
   const {data,loading,err}=useFetch(`http://localhost:8000/hotels/${id.id}`)
-  console.log(data)
+  // console.log(data)
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -57,6 +58,17 @@ export default function Hotel() {
 
       setPhotoSelected(newSlider)
   }
+
+  const {date,counter}=useSearch()
+  // console.log(date)
+  // console.log(date[0].endDate-date[0].startDate)
+  const dayDurationCalc = (date1,date2)=>{
+    const timediff=Math.abs(date2.getTime()-date1.getTime())
+    const daydiff=Math.ceil(timediff/(1000*60*60*24))
+    return daydiff
+  } 
+
+  const dayDuration=dayDurationCalc(date[0].startDate,date[0].endDate) 
 
   return (
       <div>
@@ -108,13 +120,13 @@ export default function Hotel() {
               </p>
               </div>
               <div className='hotel-detail-price'>
-                <h1>Perfect for a 9-night stay!</h1>
+                <h1>Perfect for a {dayDuration}-night stay!</h1>
                 <span>
                   Located in the real heart of Krakow, this property has an
                   excellent location score of 9.8!
                 </span>
                 <h2>
-                  <b>$945</b> (9 nights)
+                  <b>${dayDuration*(data.cheapestPrice)*counter.room}</b> ({dayDuration} nights)
                 </h2>
                 <button>Reserve or Book Now!</button>
               </div>
