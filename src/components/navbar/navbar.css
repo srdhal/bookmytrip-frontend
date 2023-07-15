@@ -12,6 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* padding: 10px; */
 }
 
 .logo{
@@ -25,4 +26,5 @@
     height: 30px;
     border-radius: 30px;
     margin: 0px 10px 0px 10px;
+    cursor: pointer;
 }
