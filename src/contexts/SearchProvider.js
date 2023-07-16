@@ -12,7 +12,13 @@ export function SearchProvider({children}) {
   
   const INITIAL_STATE={
     city:undefined,
-    date: [],
+    date: [
+      {
+        startDate: new Date(),
+        endDate: new Date(),
+        key: 'selection'
+      }
+    ],
     counter: {
       adults: undefined,
       children: undefined,

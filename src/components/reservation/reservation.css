@@ -1,0 +1,60 @@
+.reservation{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(216, 209, 209,0.7);
+    /* opacity: 50%; */
+}
+.reservation-icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+}
+.reservation-container{
+    position: relative;
+    padding: 20px;
+    border: 10px;
+    background-color: rgb(213, 193, 193);
+    width:40vw
+}
+.reserve-items{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 30px;
+}
+
+.reserve-item-title {
+    font-weight: 900;
+    text-transform: capitalize;
+}
+
+.reserve-item-desc {
+    font-weight: 300;
+}
+
+.reserve-item-maxPeople {
+    font-size: 12px;
+}
+
+.reserve-item-price {
+    font-weight: 500;
+}
+
+.reserve-btn{
+    border: none;
+    padding: 10px 20px;
+    background-color: #0071c2;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+}

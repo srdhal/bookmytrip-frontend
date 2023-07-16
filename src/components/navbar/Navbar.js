@@ -23,7 +23,17 @@ export default function Navbar() {
               {!user ? <>
                 <button className='btn'>register</button>
                 <button className='btn' onClick={handleChange}>login</button>
-              </>: <button onClick={handleClick}>{user.username}</button>}
+              </>: 
+              <>
+                  <div className="navdropdown">
+                    <button className="navdropbtn">{user.username}</button>
+                    <div className="navdropdown-content">
+                      <a href="/profile">profile</a>
+                      <a href="/" onClick={handleClick}>Logout</a>
+                    </div>
+                  </div>
+                  {/* <div >good</div> */}
+              </>}
             </div>
         </div>
       </div>

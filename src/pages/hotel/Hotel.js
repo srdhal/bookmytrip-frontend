@@ -8,6 +8,7 @@ import MailingList from '../../components/mailingList/MailingList'
 import { useLocation, useParams } from 'react-router-dom'
 import useFetch from '../../hooks/useFetch'
 import { useSearch } from '../../contexts/SearchProvider'
+import Reservation from '../../components/reservation/Reservation'
 
 
 
@@ -40,6 +41,8 @@ export default function Hotel() {
 
   const [photoSelected,setPhotoSelected]=useState(0)
   const [photoPanel,setPhotoPanel]=useState(false)
+  const [reservationPanel,setReservationPanel]=useState(false)
+
 
   const handleSelect=(index)=>{
      setPhotoSelected(index)
@@ -59,9 +62,11 @@ export default function Hotel() {
       setPhotoSelected(newSlider)
   }
 
+  const handleReserveClick=()=>{
+    setReservationPanel(true)
+  }
+
   const {date,counter}=useSearch()
-  // console.log(date)
-  // console.log(date[0].endDate-date[0].startDate)
   const dayDurationCalc = (date1,date2)=>{
     const timediff=Math.abs(date2.getTime()-date1.getTime())
     const daydiff=Math.ceil(timediff/(1000*60*60*24))
@@ -85,7 +90,7 @@ export default function Hotel() {
         <FontAwesomeIcon icon={faCircleArrowRight} className='arrow' onClick={()=>handleSlider("right")}/>
         </div>}
           <div className='hotel-wrapper'>
-            <button className='hotel-button'>Book Now</button>
+            {/* <button className='hotel-button'>Book Now</button> */}
             <div className='hotel-title'>{data.name}</div>
             <div className='hotel-address'>
               <FontAwesomeIcon icon={faLocation}/>
@@ -128,12 +133,13 @@ export default function Hotel() {
                 <h2>
                   <b>${dayDuration*(data.cheapestPrice)*counter.room}</b> ({dayDuration} nights)
                 </h2>
-                <button>Reserve or Book Now!</button>
+                <button onClick={handleReserveClick}>Reserve or Book Now!</button>
               </div>
             </div>
           </div>
             <MailingList/>
         </div>
+        {reservationPanel && <Reservation id={id.id} setPanel={setReservationPanel} />}
       </div>
   )
 }

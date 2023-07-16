@@ -10,7 +10,7 @@ import MailingList from '../../components/mailingList/MailingList'
 export default function Home() {
   return (
     <div>
-     <div className='home'>
+     {/* <div className='home'> */}
         <Navbar/>
         <Header/>
         <div className='home-content'>
@@ -22,7 +22,7 @@ export default function Home() {
           <MailingList/>
         </div>
 
-     </div>
+     {/* </div> */}
     </div>
   )
 }
